@@ -31,12 +31,6 @@ matrix:
           env: SPEC=android-g++ CONFIG=installer
           sudo: false
 
-android:
-  components:
-    - platform-tools
-    - build-tools-21.1.1
-    - android-21
-
 cache:
   - apt
 
@@ -70,9 +64,11 @@ install:
       && ./android-ndk-r10e-linux-x86_64.bin > /dev/null
       && export PATH=`pwd`/android-ndk-r10e:$PATH
       && export ANDROID_NDK_ROOT=`pwd`/android-ndk-r10e
-      && export ANDROID_SDK_ROOT=/usr/local/android-sdk
       && wget https://s3-us-west-2.amazonaws.com/qgroundcontrol/dependencies/Qt5.5.0-android.tar.bz2
+      && wget https://s3-us-west-2.amazonaws.com/qgroundcontrol/dependencies/android-sdk.tar.bz2
       && tar jxf Qt5.5.0-android.tar.bz2
+      && tar jxf android-sdk.tar.bz2
+      && export ANDROID_SDK_ROOT=`pwd`/android-sdk
       && export PATH=`pwd`/Qt5.5.0/5.5/android_armv7/bin:$PATH
       ;
     fi
